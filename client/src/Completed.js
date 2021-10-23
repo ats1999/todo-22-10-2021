@@ -26,17 +26,7 @@ function Completed(){
   const open1 = ()=>{
     setopenbacmenu(true);
   }
-//   useEffect(()=>{
-//     fetch(`http://localhost:4000/todos`,{
-//       method: 'POST',
-//       headers: {"Content-Type":"application/json",
-//       Authorization:`Basic ${credentials.userid}:${credentials.password}`
-//     },
-//     body: JSON.stringify(todoslist),
-//   })
-//   .then(()=>{})
-//
-// },[todoslist,credentials]);
+//   
   useEffect(()=>{
     fetch(`http://localhost:4000/todos`,{
       method: 'GET',

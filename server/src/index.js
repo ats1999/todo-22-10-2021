@@ -1,8 +1,11 @@
 const express = require("express")
+const env = require("dotenv")
 const mongoose = require("mongoose")
 const app = express();
 const cors = require('cors');
-mongoose.connect("mongodb+srv://pranjal:pranjal@cluster0.xyzwc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority" ,
+
+env.config();
+mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.xyzwc.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority` ,
 {
     useNewUrlParser:true,
     useUnifiedTopology:true,
