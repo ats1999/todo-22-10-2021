@@ -10,9 +10,7 @@ const getTasks = catchAsync(async (req, res,next) => {
 
     const tasks = await Task.find( { user: req.user._id } )
 
-    res.json({
-        tasks
-    })
+    res.send(tasks)
 })
 
 // @desc      Create task
@@ -44,7 +42,7 @@ const createTask = catchAsync(async (req, res,next) => {
         priority
     })
   
-    res.status(201).json(createdTask)
+    res.status(201).send(createdTask)
 })
 
 // @desc      Get task
@@ -62,7 +60,7 @@ const getTask = catchAsync(async (req, res,next) => {
         return next(new AppError('No task found with that Id', 404));
     }
 
-    res.json(task)
+    res.send(task)
 })
 
 // @desc      Update task
@@ -91,7 +89,7 @@ const updateTask = catchAsync(async (req, res,next) => {
         return next(new AppError('No task found with that Id', 404));
     }
 
-    res.json(task)
+    res.send(task)
 })
 
 // @desc      Delete task
