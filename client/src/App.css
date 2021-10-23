@@ -1,0 +1,38 @@
+.app_page{
+    display: flex;
+  }
+  *{
+    margin: 0;
+  
+  }
+  .todocontainer{
+    margin-bottom: 37px;
+    height: 81.6vh;
+    overflow-y:scroll;
+    color: white;
+    padding: 25px;
+  
+  }
+  .item {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #F1F1F1;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding: 0 20px;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    /* font-family: sans-serif; */
+  }
+  input:checked+p {
+    text-decoration: line-through;
+    text-decoration-color: black;
+  }
+  .item22{
+    margin:10px 10px;
+  }
+  .modalinput{
+    margin:20px;
+  }
