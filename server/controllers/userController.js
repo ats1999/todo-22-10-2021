@@ -4,33 +4,46 @@ import User from './../models/userModel.js'
 import AppError from './../utils/appError.js'
 
 const signToken = id => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+    jwt.sign({ id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN
+    },
+    (err, token) => {
+      if (err) throw err;
+      console.log(token);
     });
 };
   
-const createSendToken = (user, statusCode, res) => {
-    const token = signToken(user._id);
-      
-    const options = {
-      expires: new Date(
-        Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000,
-      ),
-      httpOnly: true,
-    };
-  
-    if (process.env.NODE_ENV === 'production') {
-      options.secure = true;
-    }
+const createSendToken = (user, statusCode, res, next) => {
 
-    // Remove password from output
-    user.password = undefined;
+    jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN
+    },
+    (err, token) => {
+      if (err)
+      {
+        return next(err);
+      }
+
+      const options = {
+        expires: new Date(
+          Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000,
+        ),
+        httpOnly: true,
+      };
+    
+      if (process.env.NODE_ENV === 'production') {
+        options.secure = true;
+      }
   
-    res.status(statusCode).cookie('token', token, options).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token
+      // Remove password from output
+      user.password = undefined;
+    
+      res.status(statusCode).cookie('token', token, options).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token
+      });
     });
 };
 
