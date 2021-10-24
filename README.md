@@ -1,25 +1,26 @@
-# todo-22-10-2021
-A demo todo app for the demonstration of the industrial work
+## Postman link
 
-## Setup
-**clone**
-```js
-git clone -b {branch_name} https://github.com/ats1999/todo-22-10-2021.git
+https://documenter.getpostman.com/view/13203210/UV5afFw6
+
+## Env Variables
+
+Create a config.env file in the server folder and add the following
+
 ```
-**go to directory**
-```js
-cd todo-22-10-2021
+NODE_ENV = development
+PORT = 5000
+MONGO_URI = your mongodb uri
+JWT_SECRET = abc
+JWT_EXPIRES_IN= 1d
+JWT_COOKIE_EXPIRE= 1
 
-// create client
-npx create-react-app client
-
-// create server 
-mkdir server
-cd server
-
-// initialize server
-npm init 
 ```
 
-## Start__Working
+### Run
 
+```
+# Run server (:5000)
+cd server 
+npm start
+
+```
