@@ -1,10 +1,9 @@
 import path from 'path'
 import express from 'express'
-import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import connectDB from './config/db.js'
 import globalErrorHandler from './controllers/errorController.js'
-import userRoutes from './routes/userRoutes.js'
+import authRoutes from './routes/authRoutes.js'
 import taskRoutes from './routes/taskRoutes.js'
 import mongoSanitize from 'express-mongo-sanitize'
 import helmet from 'helmet'
@@ -12,8 +11,7 @@ import xss from 'xss-clean'
 import rateLimit from 'express-rate-limit'
 import hpp from 'hpp'
 import cors from 'cors'
-
-dotenv.config({path: './config.env'})
+import "dotenv/config" 
 
 connectDB()
 
@@ -47,8 +45,8 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
-app.use('/api/users',userRoutes)
-app.use('/api/tasks',taskRoutes)
+app.use('/api/auth',authRoutes)
+app.use('/api',taskRoutes)
 
 const __dirname = path.resolve()
 

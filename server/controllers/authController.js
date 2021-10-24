@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
-import catchAsync from './../utils/catchAsync.js'
-import User from './../models/userModel.js'
-import AppError from './../utils/appError.js'
+import catchAsync from '../utils/catchAsync.js'
+import User from '../models/userModel.js'
+import AppError from '../utils/appError.js'
 
 const signToken = id => {
     jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -49,10 +49,10 @@ const createSendToken = (user, statusCode, res, next) => {
 
 
 // @desc      Login user
-// @route     POST /api/users/login
+// @route     POST /api/auth/login
 // @access    Public
 
-const authUser= catchAsync(async(req,res,next)=>{
+const loginUser= catchAsync(async(req,res,next)=>{
 
     const { email, password } = req.body;
 
@@ -74,7 +74,7 @@ const authUser= catchAsync(async(req,res,next)=>{
 
 
 // @desc      Register user
-// @route     POST /api/users
+// @route     POST /api/auth/register
 // @access    Public
 
 const registerUser = catchAsync (async(req, res,next) => {
@@ -93,7 +93,7 @@ const registerUser = catchAsync (async(req, res,next) => {
   })
 
   if (user) {
-    res.status(201).send("user Created")
+    res.status(201).send("user registered successfully")
   } else {
     return next(new AppError('Please provide correct detail',400))
   }
@@ -102,5 +102,5 @@ const registerUser = catchAsync (async(req, res,next) => {
 
 export{
   registerUser,
-  authUser
+  loginUser
 }
