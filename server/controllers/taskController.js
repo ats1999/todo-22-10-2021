@@ -14,7 +14,7 @@ const getTasks = catchAsync(async (req, res,next) => {
 })
 
 // @desc      Create task
-// @route     POST /api/tasks
+// @route     POST /api/task
 // @access    Private
 
 const createTask = catchAsync(async (req, res,next) => {
