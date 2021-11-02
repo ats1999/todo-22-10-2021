@@ -7,7 +7,6 @@ import CreateArea from './CreateArea/CreateArea'
 
 function App() {
   const [arr,setArr]=useState([]);
-
   function saveNote(titled,noted){
     setArr((prev)=>{
     	return([...prev,{
@@ -24,21 +23,16 @@ function App() {
 			})
   		);
   }
-  function editNote(index,title,content){
-	console.log(index,title,content)
-  }
-
   return (
     <div>
        <Header/>
-       <CreateArea forSubmit={saveNote}/>
-      	{arr.map(eachNote => (
+       <CreateArea forSubmit={saveNote} content="" heading="" />
+      	{arr.map(note => (
       		<Note
-      		    id={eachNote.key}
-	       		title={eachNote.title}
-	       		content={eachNote.content}
+      		    id={note.key}
+	       		title={note.title}
+	       		content={note.content}
 	       		toDelete={deleteNote}
-				toEdit={editNote}
        		/>
       	))}
        <Footer/>

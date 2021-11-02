@@ -40,13 +40,19 @@ function CreateArea(props) {
         <textarea name="content" onChange={handleNote} placeholder="Take a note..." rows={row} spellCheck="false" value={note} onClick={Expand}/>
         <Zoom in={bool}>
         <Fab onClick={(event)=>{
-        	props.forSubmit(title,note);
-     			event.preventDefault();
-     			setTitle("");
-     			setNote("");
-          setBool(false);
-          setRow(1);
-          setDisplay("none");
+          if((title==undefined || title=='') && (note==undefined || note=='')){
+            alert("Please enter something!")
+          }
+          else{
+            console.log({title})
+            props.forSubmit(title,note);
+            setTitle("");
+            setNote("");
+            setBool(false);
+            setRow(1);
+            setDisplay("none");
+          }
+        	
  			}}><AddIcon/></Fab>
         </Zoom>
       </form>
